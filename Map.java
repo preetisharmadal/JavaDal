@@ -1,46 +1,50 @@
 import java.util.ArrayList;
 
 public class Map {
+    //    Using Arraylist to store keys and values paired by their index in Arraylist.
     private ArrayList<Integer> keys = new ArrayList<Integer>();
     private ArrayList<Integer> values = new ArrayList<Integer>();
 
+    //    Constructor to accept <Integer, Integer>
     public Map(int key, int value) {
         keys.add(key);
         values.add(value);
     }
 
-    public void addPair(int key, int value) {
+    //    add key-value for <Integer, Integer>
+    public void addPair(int key, int value) throws Exception {
+//        Adding pair with unique key validation
         if (keys.contains(key)) {
-            System.out.println("The key already exists!");
+            throw new Exception("Cannot add: Duplicate key exists");
         } else {
             keys.add(key);
             values.add(value);
-
         }
 
     }
 
-    public int getValue(int key) {
+    //    Get value from key for <Integer,Integer>
+    public int getValue(int key) throws Exception {
+//        Fetching value with key not found validation
         if (keys.contains(key)) {
             int index = keys.indexOf(key);
             int value = values.get(index);
             return value;
-        }
-
-        else {
-            System.out.println("The key does not exist!");
-            return Integer.MAX_VALUE;
+        } else {
+            throw new Exception("Cannot get value: Key does not exist");
         }
     }
 
-    public void removePair(int key) {
+    //    Remove key-value for <Integer,Integer>
+    public void removePair(int key) throws Exception {
+//        Deleting pair with key not found validation
         if (keys.contains(key)) {
             int index = keys.indexOf(key);
             keys.remove(index);
             values.remove(index);
 
         } else {
-            System.out.println("The key does not exist!");
+            throw new Exception("Cannot remove pair: Key does not exist");
         }
 
     }
